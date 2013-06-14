@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 class TipoDocumento(models.Model):
 	nome = models.CharField("Nome", max_length = 128)
 	slug = models.SlugField(null = True, blank = True)
-	
+	groups = models.ManyToManyField(Group, null=True, default=None, blank=True)
+
 	def __unicode__(self):
 		return self.nome
 
